@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  --gradient-primary: linear-gradient(45deg, #96c03a 0%, #00aecc 30%);
+  --gradient-primary-full: linear-gradient(45deg, #96c03a 0%, #00aecc 100%);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-gradient-primary {
+    background: linear-gradient(60deg, #7ab82e 0%, #00a0b0 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #00a0b0;
+  }
+
+  /* Gradient spans only the text width, not the full element */
+  .text-gradient-primary-fit {
+    display: inline;
+    background: linear-gradient(60deg, #7ab82e 0%, #00a0b0 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #00a0b0;
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(45deg, #96c03a 0%, #00aecc 30%);
+  }
+  
+  .bg-gradient-primary-full {
+    background: linear-gradient(60deg, #96c03a 0%, #00aecc 60%);
+  }
+
+  .bg-gradient-primary-full-light {
+    background: linear-gradient(60deg, #96c03a33 0%, #00aecc33 100%);
+  }
+  
+  .border-gradient-primary {
+    border-color: #96c03a;
+    border-image: linear-gradient(45deg, #96c03a 0%, #00aecc 30%) 1;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
