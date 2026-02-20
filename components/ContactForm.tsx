@@ -92,7 +92,7 @@ export default function ContactForm() {
       {submitStatus === 'success' && (
         <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded flex items-center gap-2">
           <FaCheckCircle />
-          <span>Thank you for your message! I'll get back to you soon.</span>
+          <span>Thank you for your message! I&apos;ll get back to you soon.</span>
         </div>
       )}
 

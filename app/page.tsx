@@ -179,9 +179,9 @@ export default async function Home() {
       {/* Call to Action */}
       <section className="py-16 bg-gray-50 relative overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-gradient-primary">Let's Connect</h2>
+          <h2 className="text-3xl font-bold mb-4 text-gradient-primary">Let&apos;s Connect</h2>
           <p className="text-xl mb-8 text-gray-700">
-            Interested in collaboration or have questions? I'd love to hear from you.
+            Interested in collaboration or have questions? I&apos;d love to hear from you.
           </p>
           <Link
             href="/contact"

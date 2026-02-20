@@ -78,8 +78,8 @@ export function parseCVText(cvText: string): ExtractedCVData {
   const data: ExtractedCVData = {};
   
   // Extract basic contact info
-  data.email = extractEmail(cvText);
-  data.phone = extractPhone(cvText);
+  data.email = extractEmail(cvText) ?? undefined;
+  data.phone = extractPhone(cvText) ?? undefined;
   
   // Extract publications
   data.publications = extractPublications(cvText);
