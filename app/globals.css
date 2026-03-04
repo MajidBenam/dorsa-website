@@ -57,6 +57,10 @@ body {
   .bg-gradient-primary-full-light {
     background: linear-gradient(60deg, #96c03a33 0%, #00aecc33 100%);
   }
+
+  .bg-gradient-primary-full-medium-light {
+    background: linear-gradient(60deg, #96c03a55 0%, #00aecc55 100%);
+  }
   
   .border-gradient-primary {
     border-color: #96c03a;

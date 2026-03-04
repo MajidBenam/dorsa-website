@@ -13,7 +13,8 @@ import {
   FaBriefcase, 
   FaFlask, 
   FaFileAlt, 
-  FaEnvelope 
+  FaEnvelope,
+  FaImages 
 } from 'react-icons/fa';
 
 export default function Navigation() {
@@ -25,6 +26,7 @@ export default function Navigation() {
     { href: '/#about', label: 'About', icon: FaUser },
     { href: '/experience', label: 'Experience', icon: FaBriefcase },
     { href: '/research', label: 'Research', icon: FaFlask },
+    { href: '/gallery', label: 'Posts', icon: FaImages },
     { href: '/cv', label: 'CV', icon: FaFileAlt },
     { href: '/contact', label: 'Contact', icon: FaEnvelope },
   ];

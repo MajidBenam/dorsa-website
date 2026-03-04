@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { Experience, Research, Supervision } from '@/types/database';
+import { Experience, Research, Supervision, InstagramPost } from '@/types/database';
 
 // Data fetching functions for use across the application
 
@@ -167,6 +167,72 @@ export async function getAllSupervision(): Promise<Supervision[]> {
     return data || [];
   } catch (error) {
     console.error('Error fetching supervision:', error);
+    return [];
+  }
+}
+
+export async function getInstagramPosts(): Promise<InstagramPost[]> {
+  try {
+    const { data, error } = await supabase
+      .from('instagram_posts')
+      .select('*')
+      .order('timestamp', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching instagram posts:', error);
+      return [];
+    }
+
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching instagram posts:', error);
+    return [];
+  }
+}
+
+export async function getInstagramPostById(id: string): Promise<InstagramPost | null> {
+  try {
+    const { data, error } = await supabase
+      .from('instagram_posts')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error || !data) {
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching instagram post:', error);
+    return null;
+  }
+}
+
+export async function getInstagramPostGroupById(id: string): Promise<InstagramPost[]> {
+  try {
+    const base = await getInstagramPostById(id);
+    if (!base) return [];
+
+    const { data, error } = await supabase
+      .from('instagram_posts')
+      .select('*')
+      .eq('timestamp', base.timestamp)
+      .eq('permalink', base.permalink)
+      .order('id', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching instagram post group:', error);
+      return [base];
+    }
+
+    if (!data || data.length === 0) {
+      return [base];
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Error fetching instagram post group:', error);
     return [];
   }
 }

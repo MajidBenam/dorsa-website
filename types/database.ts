@@ -48,3 +48,16 @@ export interface ContactSubmission {
   created_at: string;
   read: boolean;
 }
+
+export interface InstagramPost {
+  id: string;
+  media_url: string | null;
+  local_path: string;
+  caption: string | null;
+  timestamp: string;
+  permalink: string | null;
+  media_type: string | null;
+   tags: string[] | null;
+  created_at: string;
+  updated_at: string;
+}

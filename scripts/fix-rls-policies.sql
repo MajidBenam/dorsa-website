@@ -6,6 +6,7 @@ DROP POLICY IF EXISTS "Allow public read access on experiences" ON experiences;
 DROP POLICY IF EXISTS "Allow public read access on research" ON research;
 DROP POLICY IF EXISTS "Allow public read access on supervision" ON supervision;
 DROP POLICY IF EXISTS "Allow public insert on contact_submissions" ON contact_submissions;
+DROP POLICY IF EXISTS "Allow public read access on instagram_posts" ON instagram_posts;
 
 -- Recreate policies with explicit public access
 CREATE POLICY "Allow public read access on experiences" ON experiences
@@ -28,6 +29,11 @@ CREATE POLICY "Allow public insert on contact_submissions" ON contact_submission
   TO public
   WITH CHECK (true);
 
+CREATE POLICY "Allow public read access on instagram_posts" ON instagram_posts
+  FOR SELECT 
+  TO public
+  USING (true);
+
 -- Verify policies are created
 SELECT 
   schemaname,
@@ -38,5 +44,5 @@ SELECT
   cmd,
   qual
 FROM pg_policies 
-WHERE tablename IN ('research', 'experiences', 'supervision', 'contact_submissions')
+WHERE tablename IN ('research', 'experiences', 'supervision', 'contact_submissions', 'instagram_posts')
 ORDER BY tablename, policyname;

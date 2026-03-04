@@ -56,6 +56,20 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Create instagram_posts table (for Gallery / Instagram sync)
+CREATE TABLE IF NOT EXISTS instagram_posts (
+  id TEXT PRIMARY KEY,
+  media_url TEXT,
+  local_path TEXT NOT NULL,
+  caption TEXT,
+  timestamp TIMESTAMP WITH TIME ZONE NOT NULL,
+  permalink TEXT,
+  media_type TEXT,
+  tags TEXT[],
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_experiences_slug ON experiences(slug);
 CREATE INDEX IF NOT EXISTS idx_experiences_date_from ON experiences(date_from DESC);
@@ -68,6 +82,7 @@ ALTER TABLE experiences ENABLE ROW LEVEL SECURITY;
 ALTER TABLE research ENABLE ROW LEVEL SECURITY;
 ALTER TABLE supervision ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contact_submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE instagram_posts ENABLE ROW LEVEL SECURITY;
 
 -- Drop existing policies if they exist (for re-running script)
 DROP POLICY IF EXISTS "Allow public read access on experiences" ON experiences;
@@ -89,6 +104,9 @@ CREATE POLICY "Allow public read access on supervision" ON supervision
 CREATE POLICY "Allow public insert on contact_submissions" ON contact_submissions
   FOR INSERT WITH CHECK (true);
 
+CREATE POLICY "Allow public read access on instagram_posts" ON instagram_posts
+  FOR SELECT USING (true);
+
 -- Create function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -102,6 +120,7 @@ $$ LANGUAGE plpgsql;
 DROP TRIGGER IF EXISTS update_experiences_updated_at ON experiences;
 DROP TRIGGER IF EXISTS update_research_updated_at ON research;
 DROP TRIGGER IF EXISTS update_supervision_updated_at ON supervision;
+DROP TRIGGER IF EXISTS update_instagram_posts_updated_at ON instagram_posts;
 
 -- Create triggers for updated_at
 CREATE TRIGGER update_experiences_updated_at
@@ -116,5 +135,10 @@ CREATE TRIGGER update_research_updated_at
 
 CREATE TRIGGER update_supervision_updated_at
   BEFORE UPDATE ON supervision
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_instagram_posts_updated_at
+  BEFORE UPDATE ON instagram_posts
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
