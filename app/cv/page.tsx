@@ -16,7 +16,7 @@ export const metadata = {
 };
 
 export default function CVPage() {
-  const cvPath = '/cv/Dorsa Updated CV Feb 2026.pdf';
+  const cvPath = '/cv/Dorsa Updated CV Mar 2026.pdf';
 
   return (
     <div className="py-16">
@@ -33,7 +33,7 @@ export default function CVPage() {
             </p>
           </div>
         </div>
-        <PDFViewer file={cvPath} title="Dr. Dorsa - Curriculum Vitae" />
+        <PDFViewer file={cvPath} title="Dr. Dorsa Ghasemi - Curriculum Vitae" />
       </div>
     </div>
   );

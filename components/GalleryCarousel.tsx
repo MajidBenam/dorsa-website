@@ -19,6 +19,7 @@ export default function GalleryCarousel({ items, altFallback = 'Gallery image' }
 
   const total = items.length;
   const current = items[index];
+  const imageSrc = current.storage_public_url || current.local_path;
 
   const goPrev = () => {
     setIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
@@ -43,7 +44,7 @@ export default function GalleryCarousel({ items, altFallback = 'Gallery image' }
           </div>
         ) : (
           <Image
-            src={current.local_path}
+            src={imageSrc}
             alt={current.caption || altFallback}
             fill
             className="object-contain"

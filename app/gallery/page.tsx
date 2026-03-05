@@ -124,6 +124,7 @@ export default async function GalleryPage({
               .map((group) => {
               const post = group.posts[0];
               const multi = group.posts.length > 1;
+              const imageSrc = post.storage_public_url || post.local_path;
               return (
               <article
                 key={group.key}
@@ -137,7 +138,7 @@ export default async function GalleryPage({
                       </div>
                     ) : (
                       <Image
-                        src={post.local_path}
+                        src={imageSrc}
                         alt={truncateCaption(post.caption) || 'Gallery image'}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"

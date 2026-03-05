@@ -53,11 +53,13 @@ export interface InstagramPost {
   id: string;
   media_url: string | null;
   local_path: string;
+  storage_path?: string | null;
+  storage_public_url?: string | null;
   caption: string | null;
   timestamp: string;
   permalink: string | null;
   media_type: string | null;
-   tags: string[] | null;
+  tags: string[] | null;
   created_at: string;
   updated_at: string;
 }
